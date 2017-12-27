@@ -1,20 +1,13 @@
-local reset white gray green red yellow blue cyan magenta black
-reset="%{${reset_color}%}"
-gray="%{$FG[239]%}"
-green="%{$FG[010]%}"
-red="%{$FG[009]%}"
-yellow="%{$FG[011]%}"
-cyan="%{$FG[066]%}"
-blue="%{$FG[012]%}"
-
-
-alias ll='ls -lh'
-alias la='ls -la'
-alias lls='ll -Sr'
-alias less='less -imJMW'
+# Aliases <<1
+#-------------------------------------------------------------------------------
+alias la='ls -lah'
 alias ping='ping -c 5'      # Pings with 5 packets, not unlimited
 alias ts='tig status'
 alias c='clear'
+alias speed='speedtest-cli --simple'
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+# >>1
 
 # Functions <<1
 #===============================================================================
@@ -199,3 +192,25 @@ function github()
     fi
     open $url
 }
+
+# Get the weather for given location <<2
+#--------------------------------------------------------------------
+#
+# -------------------------------------------------------------------
+weather() {
+    curl wttr.in/$1
+}
+# >>2
+# >>1
+
+# Colored Man pages <<1
+# https://www.tecmint.com/view-colored-man-pages-in-linux/
+#-------------------------------------------------------------------------------
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
+# >>1
